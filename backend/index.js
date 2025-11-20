@@ -19,7 +19,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://camp-x-find.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  credentials: true
+}));
+
+
 app.use(express.json());
 // For parsing multipart/form-data (handled by multer for file uploads,
 // but express.json handles regular JSON bodies. We might need
