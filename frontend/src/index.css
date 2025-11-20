@@ -1,0 +1,159 @@
+/* client/src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Shining Text Animation */
+.shining-text {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.shining-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: skewX(-20deg);
+  animation: shine 2s infinite linear forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+/* Custom Animations for Dashboard (and other pages) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+.animate-fadeInSlow {
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slideUp {
+  animation: slideUp 0.8s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes grandEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+/* Apply animation delays to stagger the cards */
+.animate-grandEnter:nth-child(1) { animation: grandEnter 0.6s ease-out forwards; animation-delay: 0.8s; }
+.animate-grandEnter:nth-child(2) { animation: grandEnter 0.6s ease-out forwards; animation-delay: 1.0s; }
+.animate-grandEnter:nth-child(3) { animation: grandEnter 0.6s ease-out forwards; animation-delay: 1.2s; }
+
+/* Background Grid Animation - MOVED HERE */
+.grid-animation-bg {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveGrid 20s linear infinite;
+}
+
+@keyframes moveGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Fix for some elements not rendering properly in Chrome with backdrop-filter sometimes */
+[backdrop-filter] {
+    -webkit-backdrop-filter: var(--tw-backdrop-blur);
+    backdrop-filter: var(--tw-backdrop-blur);
+}
+
+/* client/src/index.css */
+
+/* ... (existing animations: shining-text, fadeIn, slideUp, grandEnter, grid-animation-bg) ... */
+
+/* ItemListPage Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+.animate-fadeInUp.delay-1 {
+  animation-delay: 0.3s; /* Delay for search bar */
+}
+.animate-fadeIn.delay-2 {
+  animation-delay: 0.6s; /* Delay for empty state */
+}
+
+@keyframes itemEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-itemEnter {
+  animation: itemEnter 0.6s ease-out forwards;
+  /* Delay is set inline using --delay CSS variable */
+}
+/* Futuristic Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px; /* For horizontal scrolling */
+}
+
+/* The Track (Background) */
+::-webkit-scrollbar-track {
+  background: #0a0a12; /* Matches your App background */
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* The Handle (The moving part) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6d28d9, #3b82f6); /* Purple to Blue */
+  border-radius: 5px;
+  border: 2px solid #0a0a12; /* Creates a padding effect */
+}
+
+/* Handle on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7c3aed, #60a5fa); /* Brighter on hover */
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); /* Neon Glow */
+}
