@@ -27,7 +27,7 @@ router.route('/my')
   .get(protect, getMyItems);
 
 // New route for AI analysis and image upload (temporary)
-router.post('/analyze-image', protect, upload.array('images', 5), analyzeAndUploadImage);
+router.post('/analyze-image', protect, upload.array('images', 50), analyzeAndUploadImage);
 
 
 // Routes for specific item by ID
